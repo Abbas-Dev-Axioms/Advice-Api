@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="banner">
+      <div class="advice_wrapper">
+        <h2 class="">Advice Number</h2>
+          <p class="advice">
+        </p>
+        <p class="divider">''</p>
+        <button onclick="fetchAdvice()"><img src="./chatIcon.svg" height="30px" width="30px" /></button>
+      </div>
+    </div>
+  </body>
+  <script>
+    // Function to make the API call and update the advice content
+    async function fetchAdvice() {
+      try {
+        const response = await fetch("https://api.adviceslip.com/advice");
+        const data = await response.json();
+
+        // Update the advice content
+        document.querySelector(".advice").textContent = data.slip.advice;
+      } catch (error) {
+        console.error("Error fetching advice:", error);
+      }
+    }
+
+    // Call the fetchAdvice function when the page loads
+    window.onload = fetchAdvice;
+  </script>
+</html>
